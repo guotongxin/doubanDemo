@@ -1,0 +1,73 @@
+.top-nav {
+  width: 100%;
+  color: #D5D5D5;
+  background-color: #545652;
+  height: 28px;
+  display: flex;
+  font-size: 12px;
+  justify-content: space-between;
+}
+.top-nav ul {
+  display: flex;
+  line-height: 28px;
+}
+.top-nav ul li {
+  padding: 0 10px;
+}
+header {
+  background-color: #f0f3f5;
+}
+header .nav-wrap {
+  width: 100%;
+  height: 75px;
+  border-bottom: 1px solid #e5ebe4;
+  display: flex;
+  align-items: center;
+}
+header .nav-wrap .nav-logo {
+  width: 145px;
+  height: 56px;
+  margin-right: 50px;
+}
+header .nav-wrap .nav-logo a {
+  font-size: 36px;
+  color: #3399FF;
+  font-weight: bold;
+  font-family: "微软雅黑";
+}
+header .nav-wrap .inp {
+  width: 400px;
+  height: 30px;
+  position: relative;
+}
+header .nav-wrap .inp input {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  border: #fff;
+  padding-left: 5px;
+}
+header .nav-wrap .inp input::placeholder {
+  font-size: 12px;
+}
+header .nav-wrap .inp .suggest-list {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: #fff;
+}
+header .nav-secondary {
+  width: 100%;
+  height: 40px;
+  color: #0080FF;
+}
+header .nav-secondary ul {
+  display: flex;
+  line-height: 40px;
+  align-items: center;
+}
+header .nav-secondary ul li {
+  padding: 0 10px;
+}
