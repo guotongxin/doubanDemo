@@ -28,28 +28,75 @@
 
 <script>
 import data from '@/assets/js/data' // 引入电影数据
+import $ from 'jquery'
 export default {
   data () {
     return {
-      filmData: data
+      filmData: data,
+      nowScreen: 0, // 屏幕号
+      screenAmount: 0, // 总屏幕号
+      timer: 0 // 定时器
     }
   },
+  mounted () {
+    this.screenAmount = $('.container ul li').length / 5 // 计算屏幕数量
+    this.timer = setInterval(() => {
+      this.turnRight()
+    }, 5000)
+  },
   methods: {
+    // 左箭头上一页
     turnLeft () {
       console.log('turnLeft')
+      this.stopMove()
+      this.continueMove()
+      if (this.nowScreen > 0) {
+        this.nowScreen-- // 屏幕号减1
+        $('.container').animate({ left: -775 * this.nowScreen }, 800)// 定义动画
+      } else {
+        console.log(this.nowScreen)
+        this.nowScreen = this.screenAmount - 1
+        $('.container').css('left', -775 * this.screenAmount).animate({ left: -775 * (this.screenAmount - 1) }, 800)// 移动到复制的5个元素并执行动画
+      }
+      $('.hd .right span').html(this.nowScreen + 1 + '/' + this.screenAmount)// 显示屏幕号
     },
+    // 右箭头下一页
     turnRight () {
       console.log('turnRight')
+      this.stopMove()
+      this.continueMove()
+      if (this.nowScreen < this.screenAmount - 1) {
+        this.nowScreen++ // 屏幕号加1
+        $('.container').animate({ left: -775 * this.nowScreen }, 800)// 定义动画
+      } else {
+        this.nowScreen = 0
+        $('.container').animate({ left: -775 * this.screenAmount }, 800, function () {
+          $(this).css('left', 0)// 元素回到初始位置
+        })
+      }
+      $('.hd .right span').html(this.nowScreen + 1 + '/' + this.screenAmount)// 显示屏幕号
     },
+    // 鼠标进入
     stopMove () {
-      console.log('stopMove')
+      // console.log('stopMove')
+      clearInterval(this.timer) // 鼠标进入元素停止移动
     },
+    // 鼠标离开
     continueMove () {
       console.log('continueMove')
+      this.timer = setInterval(() => {
+        this.turnRight()
+      }, 5000)
     },
-    show () {
-      console.log('show')
+    // 跳转详情
+    show (val) {
+      console.log(val)
+      this.$router.push(`/${val}`)
+      // console.log('show')
     }
+  },
+  destroyed () {
+    clearInterval(this.timer) // 销毁组件时停止移动
   }
 
 }

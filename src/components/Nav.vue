@@ -49,7 +49,7 @@
       </div>
 
     </header>
-    <img v-for="obj in suggestList" :key="obj.id"  :src="obj.img" alt="">
+    <!-- <img v-for="obj in suggestList" :key="obj.id"  :src="obj.img" alt=""> -->
   </div>
 </template>
 
